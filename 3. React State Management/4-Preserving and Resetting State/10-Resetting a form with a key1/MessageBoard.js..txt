@@ -1,0 +1,16 @@
+import { useState } from "react";
+
+export default function MessageBoard({ user }) {
+  const [message, setMessage] = useState("");
+  return (
+    <section className="chat">
+      <textarea
+        value={message}
+        placeholder={"Message to " + user.name}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <br />
+      <button>Send to {user.email}</button>
+    </section>
+  );
+}

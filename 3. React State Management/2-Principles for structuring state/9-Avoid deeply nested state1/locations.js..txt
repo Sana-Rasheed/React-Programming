@@ -1,0 +1,254 @@
+export const initialExplorationPlan = {
+  id: 0,
+  name: "(Base)",
+  subLocations: [
+    {
+      id: 1,
+      name: "Earth",
+      subLocations: [
+        {
+          id: 2,
+          name: "Africa",
+          subLocations: [
+            {
+              id: 3,
+              name: "Egypt",
+              subLocations: [],
+            },
+            {
+              id: 4,
+              name: "Kenya",
+              subLocations: [],
+            },
+            {
+              id: 5,
+              name: "Madagascar",
+              subLocations: [],
+            },
+            {
+              id: 6,
+              name: "Mauritius",
+              subLocations: [],
+            },
+            {
+              id: 7,
+              name: "Seychelles",
+              subLocations: [],
+            },
+            {
+              id: 8,
+              name: "South Africa",
+              subLocations: [],
+            },
+            {
+              id: 9,
+              name: "Tanzania",
+              subLocations: [],
+            },
+          ],
+        },
+        {
+          id: 10,
+          name: "Americas",
+          subLocations: [
+            {
+              id: 11,
+              name: "Brazil",
+              subLocations: [],
+            },
+            {
+              id: 12,
+              name: "Canada",
+              subLocations: [],
+            },
+            {
+              id: 13,
+              name: "Chile",
+              subLocations: [],
+            },
+            {
+              id: 14,
+              name: "Colombia",
+              subLocations: [],
+            },
+            {
+              id: 15,
+              name: "Costa Rica",
+              subLocations: [],
+            },
+            {
+              id: 16,
+              name: "Mexico",
+              subLocations: [],
+            },
+            {
+              id: 17,
+              name: "Peru",
+              subLocations: [],
+            },
+            {
+              id: 18,
+              name: "Venezuela",
+              subLocations: [],
+            },
+          ],
+        },
+        {
+          id: 19,
+          name: "Asia",
+          subLocations: [
+            {
+              id: 20,
+              name: "Indonesia",
+              subLocations: [],
+            },
+            {
+              id: 21,
+              name: "Japan",
+              subLocations: [],
+            },
+            {
+              id: 22,
+              name: "Pakistan",
+              subLocations: [],
+            },
+            {
+              id: 23,
+              name: "Singapore",
+              subLocations: [],
+            },
+            {
+              id: 24,
+              name: "South Korea",
+              subLocations: [],
+            },
+            {
+              id: 25,
+              name: "Thailand",
+              subLocations: [],
+            },
+          ],
+        },
+        {
+          id: 26,
+          name: "Europe",
+          subLocations: [
+            {
+              id: 27,
+              name: "France",
+              subLocations: [],
+            },
+            {
+              id: 28,
+              name: "Germany",
+              subLocations: [],
+            },
+            {
+              id: 29,
+              name: "Greece",
+              subLocations: [],
+            },
+            {
+              id: 30,
+              name: "Italy",
+              subLocations: [],
+            },
+            {
+              id: 31,
+              name: "Netherlands",
+              subLocations: [],
+            },
+            {
+              id: 32,
+              name: "Spain",
+              subLocations: [],
+            },
+            {
+              id: 33,
+              name: "United Kingdom",
+              subLocations: [],
+            },
+          ],
+        },
+        {
+          id: 34,
+          name: "Oceania",
+          subLocations: [
+            {
+              id: 35,
+              name: "Australia",
+              subLocations: [],
+            },
+            {
+              id: 36,
+              name: "Fiji",
+              subLocations: [],
+            },
+            {
+              id: 37,
+              name: "French Polynesia",
+              subLocations: [],
+            },
+            {
+              id: 38,
+              name: "New Zealand",
+              subLocations: [],
+            },
+            {
+              id: 39,
+              name: "Palau",
+              subLocations: [],
+            },
+            {
+              id: 40,
+              name: "Papua New Guinea",
+              subLocations: [],
+            },
+            {
+              id: 41,
+              name: "Samoa",
+              subLocations: [],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 42,
+      name: "Moon",
+      subLocations: [
+        {
+          id: 43,
+          name: "Rheita",
+          subLocations: [],
+        },
+        {
+          id: 44,
+          name: "Piccolomini",
+          subLocations: [],
+        },
+        {
+          id: 45,
+          name: "Tycho",
+          subLocations: [],
+        },
+      ],
+    },
+    {
+      id: 46,
+      name: "Mars",
+      subLocations: [
+        {
+          id: 47,
+          name: "Red Valley",
+          subLocations: [],
+        },
+        {
+          id: 48,
+          name: "Blue Ridge",
+          subLocations: [],
+        },
+      ],
+    },
+  ],
+};

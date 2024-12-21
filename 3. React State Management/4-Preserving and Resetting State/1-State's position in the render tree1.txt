@@ -1,0 +1,32 @@
+import { useState } from "react";
+
+export default function Dashboard() {
+  const score = <Score />;
+  return (
+    <div>
+      {score}
+      {score}
+    </div>
+  );
+}
+
+function Score() {
+  const [count, setCount] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  let className = "counter";
+  if (isHovered) {
+    className += " hover";
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
+    >
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Count one</button>
+    </div>
+  );
+}

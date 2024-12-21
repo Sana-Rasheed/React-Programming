@@ -1,0 +1,16 @@
+export default function SurveyForm({ status = "empty" }) {
+  if (status === "success") {
+    return <h1>That's correct!</h1>;
+  }
+  return (
+    <>
+      <h2>Country quiz</h2>
+      <p>Which country has the longest coastline in the world?</p>
+      <form>
+        <textarea />
+        <br />
+        <button>Submit</button>
+      </form>
+    </>
+  );
+}

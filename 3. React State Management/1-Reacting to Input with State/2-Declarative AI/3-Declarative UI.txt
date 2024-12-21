@@ -1,0 +1,69 @@
+import { useState } from 'react';
+
+export default function SurveyForm() {
+  const [response, setResponse] = useState('');
+  const [error, setError] = useState(null);
+  const [status, setStatus] = useState('typing');
+
+  if (status === 'success') {
+    return <h1>That's correct!</h1>
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus('submitting');
+    try {
+      await sendSurvey(response);
+      setStatus('success');
+    } catch (err) {
+      setStatus('typing');
+      setError(err);
+    }
+  }
+
+  function handleTextareaChange(e) {
+    setResponse(e.target.value);
+  }
+
+  return (
+    <>
+      <h2>Country quiz</h2>
+      <p>
+        Which country has the longest coastline in the world?
+      </p>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={response}
+          onChange={handleTextareaChange}
+          disabled={status === 'submitting'}
+        />
+        <br />
+        <button disabled={
+          response.length === 0 ||
+          status === 'submitting'
+        }>
+          Submit
+        </button>
+        {error !== null &&
+          <p className="Error">
+            {error.message}
+          </p>
+        }
+      </form>
+    </>
+  );
+}
+
+function sendSurvey(response) {
+  // Simulating a network call.
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let shouldError = response.toLowerCase() !== 'canada';
+      if (shouldError) {
+        reject(new Error('Nice try, but that\'s the wrong answer. Try again!'));
+      } else {
+        resolve();
+      }
+    }, 1500);
+  });
+}

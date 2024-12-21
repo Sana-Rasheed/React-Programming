@@ -1,0 +1,17 @@
+<form id="surveyForm">
+  <h2>Country Quiz</h2>
+  <p>
+    What country is known for its pyramids?
+  </p>
+  <textarea id="commentBox"></textarea>
+  <br />
+  <button id="submitButton" disabled>Submit</button>
+  <p id="loadingInfo" style="display: none">Loading...</p>
+  <p id="errorInfo" style="display: none; color: red;"></p>
+</form>
+<h1 id="successInfo" style="display: none">That's correct!</h1>
+
+<style>
+* { box-sizing: border-box; }
+body { font-family: sans-serif; margin: 20px; padding: 0; }
+</style>

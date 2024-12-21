@@ -1,0 +1,48 @@
+import Title from "./Title.js";
+import ContentBlock from "./ContentBlock.js";
+
+export default function UserDashboard() {
+  return (
+    <ContentBlock>
+      <Title>User Dashboard</Title>
+      <Article
+        headline="Welcome, explorer!"
+        description="Discover my journeys."
+      />
+      <AllArticles />
+    </ContentBlock>
+  );
+}
+
+function AllArticles() {
+  return (
+    <ContentBlock>
+      <Title>Articles</Title>
+      <LatestArticles />
+    </ContentBlock>
+  );
+}
+
+function LatestArticles() {
+  return (
+    <ContentBlock>
+      <Title>Latest Articles</Title>
+      <Article headline="Cuisines of Barcelona" description="...those tapas!" />
+      <Article
+        headline="Samba in Rio de Janeiro"
+        description="What an experience!"
+      />
+    </ContentBlock>
+  );
+}
+
+function Article({ headline, description }) {
+  return (
+    <ContentBlock isFancy={true}>
+      <Title>{headline}</Title>
+      <p>
+        <i>{description}</i>
+      </p>
+    </ContentBlock>
+  );
+}

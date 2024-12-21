@@ -1,0 +1,65 @@
+async function processSurvey(e) {
+  e.preventDefault();
+  disableInput(commentBox);
+  disableInput(submitButton);
+  showElement(loadingInfo);
+  hideElement(errorInfo);
+  try {
+    await sendSurvey(commentBox.value);
+    showElement(successInfo);
+    hideElement(surveyForm);
+  } catch (err) {
+    showElement(errorInfo);
+    errorInfo.textContent = err.message;
+  } finally {
+    hideElement(loadingInfo);
+    enableInput(commentBox);
+    enableInput(submitButton);
+  }
+}
+
+function handleCommentChange() {
+  if (commentBox.value.length === 0) {
+    disableInput(submitButton);
+  } else {
+    enableInput(submitButton);
+  }
+}
+
+function hideElement(el) {
+  el.style.display = "none";
+}
+
+function showElement(el) {
+  el.style.display = "";
+}
+
+function enableInput(el) {
+  el.disabled = false;
+}
+
+function disableInput(el) {
+  el.disabled = true;
+}
+
+function sendSurvey(response) {
+  // Simulating a network call.
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (response.toLowerCase() === "egypt") {
+        resolve();
+      } else {
+        reject(new Error("Nice try, but the answer is incorrect. Try again!"));
+      }
+    }, 1500);
+  });
+}
+
+let surveyForm = document.getElementById("surveyForm");
+let commentBox = document.getElementById("commentBox");
+let submitButton = document.getElementById("submitButton");
+let loadingInfo = document.getElementById("loadingInfo");
+let errorInfo = document.getElementById("errorInfo");
+let successInfo = document.getElementById("successInfo");
+surveyForm.onsubmit = processSurvey;
+commentBox.oninput = handleCommentChange;

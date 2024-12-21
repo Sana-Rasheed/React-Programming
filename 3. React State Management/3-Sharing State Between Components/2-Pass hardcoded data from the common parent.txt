@@ -1,0 +1,32 @@
+import { useState } from "react";
+
+export default function InfoDisplay() {
+  return (
+    <>
+      <h2>Kyoto, Japan</h2>
+      <Panel heading="History" isActive={true}>
+        Kyoto served as Japan's capital and the emperor's residence from 794
+        until 1868. It is one of Japan's ten largest cities with a population of
+        1.5 million people.
+      </Panel>
+      <Panel heading="Cultural Significance" isActive={true}>
+        Kyoto is home to numerous classical Buddhist temples, as well as
+        gardens, imperial palaces, Shinto shrines, and traditional wooden
+        houses.
+      </Panel>
+    </>
+  );
+}
+
+function Panel({ heading, children, isActive }) {
+  return (
+    <section className="panel">
+      <h3>{heading}</h3>
+      {isActive ? (
+        <p>{children}</p>
+      ) : (
+        <button onClick={() => setIsActive(true)}>Show</button>
+      )}
+    </section>
+  );
+}

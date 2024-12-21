@@ -1,0 +1,57 @@
+import { useState } from "react";
+
+export default function ItemList({ items, onChangeItem, onDeleteItem }) {
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          <Item item={item} onChange={onChangeItem} onDelete={onDeleteItem} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Item({ item, onChange, onDelete }) {
+  const [isEditing, setIsEditing] = useState(false);
+  let itemContent;
+  if (isEditing) {
+    itemContent = (
+      <>
+        <input
+          value={item.text}
+          onChange={(e) => {
+            onChange({
+              ...item,
+              text: e.target.value,
+            });
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
+      </>
+    );
+  } else {
+    itemContent = (
+      <>
+        {item.text}
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+      </>
+    );
+  }
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={item.purchased}
+        onChange={(e) => {
+          onChange({
+            ...item,
+            purchased: e.target.checked,
+          });
+        }}
+      />
+      {itemContent}
+      <button onClick={() => onDelete(item.id)}>Delete</button>
+    </label>
+  );
+}

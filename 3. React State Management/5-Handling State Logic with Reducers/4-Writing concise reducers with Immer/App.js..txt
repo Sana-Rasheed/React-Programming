@@ -1,0 +1,72 @@
+import { useImmerReducer } from "use-immer";
+import AddNote from "./AddNote.js";
+import NoteList from "./NoteList.js";
+
+function notesReducer(draft, action) {
+  switch (action.type) {
+    case "added": {
+      draft.push({
+        id: action.id,
+        content: action.content,
+        completed: false,
+      });
+      break;
+    }
+    case "changed": {
+      const index = draft.findIndex((n) => n.id === action.note.id);
+      draft[index] = action.note;
+      break;
+    }
+    case "deleted": {
+      return draft.filter((n) => n.id !== action.id);
+    }
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
+}
+
+export default function NotesApp() {
+  const [notes, dispatch] = useImmerReducer(notesReducer, initialNotes);
+
+  function handleAddNote(content) {
+    dispatch({
+      type: "added",
+      id: nextId++,
+      content: content,
+    });
+  }
+
+  function handleChangeNote(note) {
+    dispatch({
+      type: "changed",
+      note: note,
+    });
+  }
+
+  function handleDeleteNote(noteId) {
+    dispatch({
+      type: "deleted",
+      id: noteId,
+    });
+  }
+
+  return (
+    <>
+      <h1>Book Summary Notes</h1>
+      <AddNote onAddNote={handleAddNote} />
+      <NoteList
+        notes={notes}
+        onChangeNote={handleChangeNote}
+        onDeleteNote={handleDeleteNote}
+      />
+    </>
+  );
+}
+
+let nextId = 3;
+const initialNotes = [
+  { id: 0, content: "Chapter 1 introduction", completed: true },
+  { id: 1, content: "Chapter 2 analysis", completed: false },
+  { id: 2, content: "Quotes from Chapter 3", completed: false },
+];

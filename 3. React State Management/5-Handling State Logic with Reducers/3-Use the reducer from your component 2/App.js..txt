@@ -1,0 +1,49 @@
+import { useReducer } from "react";
+import AddNote from "./AddNote.js";
+import NoteList from "./NoteList.js";
+import notesReducer from "./notesReducer.js";
+
+export default function NotesApp() {
+  const [notes, dispatch] = useReducer(notesReducer, initialNotes);
+
+  function handleAddNote(content) {
+    dispatch({
+      type: "added",
+      id: nextId++,
+      content: content,
+    });
+  }
+
+  function handleChangeNote(note) {
+    dispatch({
+      type: "changed",
+      note: note,
+    });
+  }
+
+  function handleDeleteNote(noteId) {
+    dispatch({
+      type: "deleted",
+      id: noteId,
+    });
+  }
+
+  return (
+    <>
+      <h1>Book Summary Notes</h1>
+      <AddNote onAddNote={handleAddNote} />
+      <NoteList
+        notes={notes}
+        onChangeNote={handleChangeNote}
+        onDeleteNote={handleDeleteNote}
+      />
+    </>
+  );
+}
+
+let nextId = 3;
+const initialNotes = [
+  { id: 0, content: "Chapter 1 introduction", completed: true },
+  { id: 1, content: "Chapter 2 analysis", completed: false },
+  { id: 2, content: "Quotes from Chapter 3", completed: false },
+];

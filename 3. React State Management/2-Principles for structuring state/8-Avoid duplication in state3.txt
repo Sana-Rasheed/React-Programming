@@ -1,0 +1,55 @@
+import { useState } from "react";
+
+const initialFoods = [
+  { name: "apples", id: 0 },
+  { name: "trail mix", id: 1 },
+  { name: "protein bar", id: 2 },
+];
+
+export default function SnackMenu() {
+  const [foods, setFoods] = useState(initialFoods);
+  const [selectedId, setSelectedId] = useState(0);
+
+  const chosenFood = foods.find((food) => food.id === selectedId);
+
+  function handleFoodChange(id, e) {
+    setFoods(
+      foods.map((food) => {
+        if (food.id === id) {
+          return {
+            ...food,
+            name: e.target.value,
+          };
+        } else {
+          return food;
+        }
+      })
+    );
+  }
+
+  return (
+    <>
+      <h2>Select your hiking snack</h2>
+      <ul>
+        {foods.map((food, index) => (
+          <li key={food.id}>
+            <input
+              value={food.name}
+              onChange={(e) => {
+                handleFoodChange(food.id, e);
+              }}
+            />{" "}
+            <button
+              onClick={() => {
+                setSelectedId(food.id);
+              }}
+            >
+              Choose
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>You picked {chosenFood.name}.</p>
+    </>
+  );
+}

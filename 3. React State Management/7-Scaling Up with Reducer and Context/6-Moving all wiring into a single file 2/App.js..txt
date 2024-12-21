@@ -1,0 +1,13 @@
+import AddItem from "./AddItem.js";
+import ItemList from "./ItemList.js";
+import { ItemsProvider } from "./ItemsContext.js";
+
+export default function ShoppingApp() {
+  return (
+    <ItemsProvider>
+      <h1>Grocery Shopping List</h1>
+      <AddItem />
+      <ItemList />
+    </ItemsProvider>
+  );
+}

@@ -1,0 +1,37 @@
+import { useState } from "react";
+
+export default function InfoDisplay() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  return (
+    <>
+      <h2>Kyoto, Japan</h2>
+      <Panel
+        heading="History"
+        isActive={activeIndex === 0}
+        onShow={() => setActiveIndex(0)}
+      >
+        Kyoto served as Japan's capital and the emperor's residence from 794
+        until 1868. It is one of Japan's ten largest cities with a population of
+        1.5 million people.
+      </Panel>
+      <Panel
+        heading="Cultural Significance"
+        isActive={activeIndex === 1}
+        onShow={() => setActiveIndex(1)}
+      >
+        Kyoto is home to numerous classical Buddhist temples, as well as
+        gardens, imperial palaces, Shinto shrines, and traditional wooden
+        houses.
+      </Panel>
+    </>
+  );
+}
+
+function Panel({ heading, children, isActive, onShow }) {
+  return (
+    <section className="panel">
+      <h3>{heading}</h3>
+      {isActive ? <p>{children}</p> : <button onClick={onShow}>Show</button>}
+    </section>
+  );
+}

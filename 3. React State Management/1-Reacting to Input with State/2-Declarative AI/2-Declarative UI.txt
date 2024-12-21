@@ -1,0 +1,26 @@
+export default function SurveyForm({
+  // Try 'submitting', 'error', 'success':
+  status = "empty",
+}) {
+  if (status === "success") {
+    return <h1>That's correct!</h1>;
+  }
+  return (
+    <>
+      <h2>Country quiz</h2>
+      <p>Which country has the longest coastline in the world?</p>
+      <form>
+        <textarea disabled={status === "submitting"} />
+        <br />
+        <button disabled={status === "empty" || status === "submitting"}>
+          Submit
+        </button>
+        {status === "error" && (
+          <p className="Error">
+            Nice try, but that's the wrong answer. Try again!
+          </p>
+        )}
+      </form>
+    </>
+  );
+}

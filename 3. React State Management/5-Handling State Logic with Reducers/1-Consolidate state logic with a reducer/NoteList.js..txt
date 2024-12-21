@@ -1,0 +1,59 @@
+import { useState } from "react";
+
+export default function NoteList({ notes, onChangeNote, onDeleteNote }) {
+  return (
+    <ul>
+      {notes.map((note) => (
+        <li key={note.id}>
+          <Note note={note} onChange={onChangeNote} onDelete={onDeleteNote} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Note({ note, onChange, onDelete }) {
+  const [isEditing, setIsEditing] = useState(false);
+  let noteContent;
+
+  if (isEditing) {
+    noteContent = (
+      <>
+        <input
+          value={note.content}
+          onChange={(e) => {
+            onChange({
+              ...note,
+              content: e.target.value,
+            });
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
+      </>
+    );
+  } else {
+    noteContent = (
+      <>
+        {note.content}
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+      </>
+    );
+  }
+
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={note.completed}
+        onChange={(e) => {
+          onChange({
+            ...note,
+            completed: e.target.checked,
+          });
+        }}
+      />
+      {noteContent}
+      <button onClick={() => onDelete(note.id)}>Delete</button>
+    </label>
+  );
+}

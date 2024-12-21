@@ -1,0 +1,15 @@
+import Header from "./Header.js";
+import Container from "./Container.js";
+
+export default function Dashboard() {
+  return (
+    <Container>
+      <Header level={1}>Main Title</Header>
+      <Header level={2}>Section Title</Header>
+      <Header level={3}>Sub-section Title</Header>
+      <Header level={4}>Sub-sub-section Title</Header>
+      <Header level={5}>Sub-sub-sub-section Title</Header>
+      <Header level={6}>Sub-sub-sub-sub-section Title</Header>
+    </Container>
+  );
+}

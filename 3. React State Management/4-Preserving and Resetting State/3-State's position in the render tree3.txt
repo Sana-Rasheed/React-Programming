@@ -1,0 +1,42 @@
+import { useState } from "react";
+
+export default function Dashboard() {
+  const [showDetail, setShowDetail] = useState(true);
+  return (
+    <div>
+      <Score />
+      {showDetail && <Score />}
+      <label>
+        <input
+          type="checkbox"
+          checked={showDetail}
+          onChange={(e) => {
+            setShowDetail(e.target.checked);
+          }}
+        />
+        Render the second score counter
+      </label>
+    </div>
+  );
+}
+
+function Score() {
+  const [count, setCount] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  let className = "counter";
+  if (isHovered) {
+    className += " hover";
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
+    >
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Count one</button>
+    </div>
+  );
+}

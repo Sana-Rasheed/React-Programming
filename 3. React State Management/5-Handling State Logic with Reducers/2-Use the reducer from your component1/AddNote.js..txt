@@ -1,0 +1,23 @@
+import { useState } from "react";
+
+export default function AddNote({ onAddNote }) {
+  const [content, setContent] = useState("");
+
+  return (
+    <>
+      <input
+        placeholder="Add note"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+      />
+      <button
+        onClick={() => {
+          setContent("");
+          onAddNote(content);
+        }}
+      >
+        Add
+      </button>
+    </>
+  );
+}

@@ -1,0 +1,33 @@
+import { useState } from 'react';
+
+export default function FloatingSquare() {
+  const [coordinates, setCoordinates] = useState({
+    top: 0,
+    left: 0
+  });
+  
+  return (
+    <div
+      onPointerMove={event => {
+        setCoordinates({
+          top: event.clientY,
+          left: event.clientX
+        });
+      }}
+      style={{
+        position: 'relative',
+        width: '100vw',
+        height: '100vh',
+      }}>
+      <div style={{
+        position: 'absolute',
+        backgroundColor: 'blue',
+        width: 30,
+        height: 30,
+        transform: `translate(${coordinates.left}px, ${coordinates.top}px)`,
+        left: -15,
+        top: -15,
+      }} />
+    </div>
+  );
+}

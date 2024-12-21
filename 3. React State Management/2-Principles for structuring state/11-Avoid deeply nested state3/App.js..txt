@@ -1,0 +1,71 @@
+import { useState } from "react";
+import { initialExplorationPlan } from "./locations.js";
+
+export default function ExplorationPlan() {
+  const [plan, setPlan] = useState(initialExplorationPlan);
+
+  function handleComplete(parentId, childId) {
+    const parent = plan[parentId];
+    // Create a new version of the parent location
+    // that doesn't include this child ID.
+    const nextParent = {
+      ...parent,
+      childIds: parent.childIds.filter((id) => id !== childId),
+    };
+    // Update the root state object...
+    setPlan({
+      ...plan,
+      // ...so that it has the updated parent.
+      [parentId]: nextParent,
+    });
+  }
+
+  const base = plan[0];
+  const locationIds = base.childIds;
+  return (
+    <>
+      <h2>Locations to explore</h2>
+      <ol>
+        {locationIds.map((id) => (
+          <LocationTree
+            key={id}
+            id={id}
+            parentId={0}
+            locationsById={plan}
+            onComplete={handleComplete}
+          />
+        ))}
+      </ol>
+    </>
+  );
+}
+
+function LocationTree({ id, parentId, locationsById, onComplete }) {
+  const location = locationsById[id];
+  const childIds = location.childIds;
+  return (
+    <li>
+      {location.name}
+      <button
+        onClick={() => {
+          onComplete(parentId, id);
+        }}
+      >
+        Complete
+      </button>
+      {childIds.length > 0 && (
+        <ol>
+          {childIds.map((childId) => (
+            <LocationTree
+              key={childId}
+              id={childId}
+              parentId={id}
+              locationsById={locationsById}
+              onComplete={onComplete}
+            />
+          ))}
+        </ol>
+      )}
+    </li>
+  );
+}

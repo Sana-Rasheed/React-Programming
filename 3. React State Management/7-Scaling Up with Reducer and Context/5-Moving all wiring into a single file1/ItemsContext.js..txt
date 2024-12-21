@@ -1,0 +1,52 @@
+import { createContext, useReducer } from "react";
+
+export const ItemsContext = createContext(null);
+export const ItemsDispatchContext = createContext(null);
+
+export function ItemsProvider({ children }) {
+  const [items, dispatch] = useReducer(itemsReducer, initialItems);
+
+  return (
+    <ItemsContext.Provider value={items}>
+      <ItemsDispatchContext.Provider value={dispatch}>
+        {children}
+      </ItemsDispatchContext.Provider>
+    </ItemsContext.Provider>
+  );
+}
+
+function itemsReducer(items, action) {
+  switch (action.type) {
+    case "added": {
+      return [
+        ...items,
+        {
+          id: action.id,
+          text: action.text,
+          purchased: false,
+        },
+      ];
+    }
+    case "changed": {
+      return items.map((i) => {
+        if (i.id === action.item.id) {
+          return action.item;
+        } else {
+          return i;
+        }
+      });
+    }
+    case "deleted": {
+      return items.filter((i) => i.id !== action.id);
+    }
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
+}
+
+const initialItems = [
+  { id: 0, text: "Buy tofu", purchased: true },
+  { id: 1, text: "Get fresh vegetables", purchased: false },
+  { id: 2, text: "Purchase miso paste", purchased: false },
+];

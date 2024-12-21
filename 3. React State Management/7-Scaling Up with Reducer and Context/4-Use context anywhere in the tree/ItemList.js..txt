@@ -1,0 +1,77 @@
+import { useState, useContext } from "react";
+import { ItemsContext, ItemsDispatchContext } from "./ItemsContext.js";
+
+export default function ItemList() {
+  const items = useContext(ItemsContext);
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          <Item item={item} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Item({ item }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useContext(ItemsDispatchContext);
+  let itemContent;
+
+  if (isEditing) {
+    itemContent = (
+      <>
+        <input
+          value={item.text}
+          onChange={(e) => {
+            dispatch({
+              type: "changed",
+              item: {
+                ...item,
+                text: e.target.value,
+              },
+            });
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
+      </>
+    );
+  } else {
+    itemContent = (
+      <>
+        {item.text}
+        <button onClick={() => setIsEditing(true)}>Edit</button>
+      </>
+    );
+  }
+
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={item.purchased}
+        onChange={(e) => {
+          dispatch({
+            type: "changed",
+            item: {
+              ...item,
+              purchased: e.target.checked,
+            },
+          });
+        }}
+      />
+      {itemContent}
+      <button
+        onClick={() => {
+          dispatch({
+            type: "deleted",
+            id: item.id,
+          });
+        }}
+      >
+        Delete
+      </button>
+    </label>
+  );
+}

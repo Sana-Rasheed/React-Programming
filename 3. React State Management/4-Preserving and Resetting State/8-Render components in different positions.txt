@@ -1,0 +1,41 @@
+import { useState } from "react";
+
+export default function GameBoard() {
+  const [isPlayerX, setIsPlayerX] = useState(true);
+  return (
+    <div>
+      {isPlayerX && <ScoreCounter player="Alex" />}
+      {!isPlayerX && <ScoreCounter player="Jane" />}
+      <button
+        onClick={() => {
+          setIsPlayerX(!isPlayerX);
+        }}
+      >
+        Switch Player!
+      </button>
+    </div>
+  );
+}
+
+function ScoreCounter({ player }) {
+  const [points, setPoints] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  let className = "counter";
+  if (isHovered) {
+    className += " hover";
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
+    >
+      <h1>
+        {player}'s points: {points}
+      </h1>
+      <button onClick={() => setPoints(points + 1)}>Count one</button>
+    </div>
+  );
+}

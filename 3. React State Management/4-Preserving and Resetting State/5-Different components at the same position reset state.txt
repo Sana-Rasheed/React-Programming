@@ -1,0 +1,41 @@
+import { useState } from "react";
+
+export default function Dashboard() {
+  const [isPaused, setIsPaused] = useState(false);
+  return (
+    <div>
+      {isPaused ? <p>See you soon!</p> : <Score />}
+      <label>
+        <input
+          type="checkbox"
+          checked={isPaused}
+          onChange={(e) => {
+            setIsPaused(e.target.checked);
+          }}
+        />
+        Take a break
+      </label>
+    </div>
+  );
+}
+
+function Score() {
+  const [count, setCount] = useState(0);
+  const [hover, setHover] = useState(false);
+
+  let className = "counter";
+  if (hover) {
+    className += " hover";
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Count one</button>
+    </div>
+  );
+}

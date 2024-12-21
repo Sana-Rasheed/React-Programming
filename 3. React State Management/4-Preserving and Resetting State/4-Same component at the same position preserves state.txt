@@ -1,0 +1,44 @@
+import { useState } from "react";
+
+export default function Dashboard() {
+  const [isStyled, setIsStyled] = useState(false);
+  return (
+    <div>
+      {isStyled ? <Score isStyled={true} /> : <Score isStyled={false} />}
+      <label>
+        <input
+          type="checkbox"
+          checked={isStyled}
+          onChange={(e) => {
+            setIsStyled(e.target.checked);
+          }}
+        />
+        Apply custom styling
+      </label>
+    </div>
+  );
+}
+
+function Score({ isStyled }) {
+  const [count, setCount] = useState(0);
+  const [hover, setHover] = useState(false);
+
+  let className = "counter";
+  if (hover) {
+    className += " hover"; // Add a space before e.g." hover"
+  }
+  if (isStyled) {
+    className += " fancy"; // Add a space before e.g." fancy"
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Count one</button>
+    </div>
+  );
+}

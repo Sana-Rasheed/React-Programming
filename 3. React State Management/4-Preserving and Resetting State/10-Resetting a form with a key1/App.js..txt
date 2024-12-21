@@ -1,0 +1,23 @@
+import { useState } from "react";
+import MessageBoard from "./MessageBoard.js";
+import UserList from "./UserList.js";
+
+export default function ChatApplication() {
+  const [currentUser, setCurrentUser] = useState(users[0]);
+  return (
+    <div>
+      <UserList
+        users={users}
+        selectedUser={currentUser}
+        onSelect={(user) => setCurrentUser(user)}
+      />
+      <MessageBoard user={currentUser} />
+    </div>
+  );
+}
+
+const users = [
+  { id: 0, name: "John", email: "john@mail.com" },
+  { id: 1, name: "Emily", email: "emily@mail.com" },
+  { id: 2, name: "Michael", email: "michael@mail.com" },
+];

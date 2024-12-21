@@ -1,0 +1,33 @@
+import { useState } from 'react';
+import { initialExplorationPlan } from './locations.js';
+
+function LocationTree({ location }) {
+  const subLocations = location.subLocations;
+  return (
+    <li>
+      {location.name}
+      {subLocations.length > 0 && (
+        <ol>
+          {subLocations.map(location => (
+            <LocationTree key={location.id} location={location} />
+          ))}
+        </ol>
+      )}
+    </li>
+  );
+}
+
+export default function ExplorationPlan() {
+  const [plan, setPlan] = useState(initialExplorationPlan);
+  const areas = plan.subLocations;
+  return (
+    <>
+      <h2>Areas to Explore</h2>
+      <ol>
+        {areas.map(location => (
+          <LocationTree key={location.id} location={location} />
+        ))}
+      </ol>
+    </>
+  );
+}

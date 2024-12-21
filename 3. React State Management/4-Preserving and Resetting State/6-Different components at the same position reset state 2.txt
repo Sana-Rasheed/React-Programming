@@ -1,0 +1,52 @@
+import { useState } from "react";
+
+export default function Dashboard() {
+  const [isStyled, setIsStyled] = useState(false);
+  return (
+    <div>
+      {isStyled ? (
+        <div>
+          <Score isStyled={true} />
+        </div>
+      ) : (
+        <section>
+          <Score isStyled={false} />
+        </section>
+      )}
+      <label>
+        <input
+          type="checkbox"
+          checked={isStyled}
+          onChange={(e) => {
+            setIsStyled(e.target.checked);
+          }}
+        />
+        Apply custom styling
+      </label>
+    </div>
+  );
+}
+
+function Score({ isStyled }) {
+  const [count, setCount] = useState(0);
+  const [hover, setHover] = useState(false);
+
+  let className = "counter";
+  if (hover) {
+    className += " hover";
+  }
+  if (isStyled) {
+    className += " fancy";
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Count one</button>
+    </div>
+  );
+}

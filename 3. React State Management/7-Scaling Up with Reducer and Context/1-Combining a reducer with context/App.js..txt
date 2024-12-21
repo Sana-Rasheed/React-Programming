@@ -1,0 +1,78 @@
+import { useReducer } from "react";
+import AddItem from "./AddItem.js";
+import ItemList from "./ItemList.js";
+
+export default function ShoppingApp() {
+  const [items, dispatch] = useReducer(itemsReducer, initialItems);
+
+  function handleAddItem(text) {
+    dispatch({
+      type: "added",
+      id: nextId++,
+      text: text,
+    });
+  }
+
+  function handleChangeItem(item) {
+    dispatch({
+      type: "changed",
+      item: item,
+    });
+  }
+
+  function handleDeleteItem(itemId) {
+    dispatch({
+      type: "deleted",
+      id: itemId,
+    });
+  }
+
+  return (
+    <>
+      <h1>Grocery Shopping List</h1>
+      <AddItem onAddItem={handleAddItem} />
+      <ItemList
+        items={items}
+        onChangeItem={handleChangeItem}
+        onDeleteItem={handleDeleteItem}
+      />
+    </>
+  );
+}
+
+function itemsReducer(items, action) {
+  switch (action.type) {
+    case "added": {
+      return [
+        ...items,
+        {
+          id: action.id,
+          text: action.text,
+          purchased: false,
+        },
+      ];
+    }
+    case "changed": {
+      return items.map((i) => {
+        if (i.id === action.item.id) {
+          return action.item;
+        } else {
+          return i;
+        }
+      });
+    }
+    case "deleted": {
+      return items.filter((i) => i.id !== action.id);
+    }
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
+}
+
+let nextId = 3;
+const initialItems = [
+  { id: 0, text: "Buy milk", purchased: true },
+  { id: 1, text: "Get vegetables", purchased: false },
+  { id: 2, text: "Pick up bread", purchased: false },
+];

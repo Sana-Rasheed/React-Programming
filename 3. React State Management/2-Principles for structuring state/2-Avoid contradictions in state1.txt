@@ -1,0 +1,45 @@
+import { useState } from 'react';
+
+export default function ReviewForm() {
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+    setIsSubmitting(true);
+    await submitReview(message);
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+  }
+
+  if (isSubmitted) {
+    return <h1>Thank you for your review!</h1>;
+  }
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <p>What did you think of your experience at Rivendell?</p>
+      <textarea
+        disabled={isSubmitting}
+        value={message}
+        onChange={e => setMessage(e.target.value)}
+      />
+      <br />
+      <button
+        disabled={isSubmitting}
+        type="submit"
+      >
+        Submit
+      </button>
+      {isSubmitting && <p>Submitting...</p>}
+    </form>
+  );
+}
+
+// Simulate message submission.
+function submitReview(message) {
+  return new Promise(resolve => {
+    setTimeout(resolve, 2000);
+  });
+}
