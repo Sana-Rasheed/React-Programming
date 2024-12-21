@@ -1,0 +1,19 @@
+export default [
+  {
+    type: "quote",
+    value:
+      "The only limit to our realization of tomorrow is our doubts of today.",
+  },
+  { type: "shade", value: "#8A2B2B" },
+  {
+    type: "quote",
+    value: "In the middle of every difficulty lies opportunity.",
+  },
+  { type: "shade", value: "#4A7B8C" },
+  {
+    type: "quote",
+    value:
+      "The future belongs to those who believe in the beauty of their dreams.",
+  },
+  { type: "shade", value: "#E2E1C3" },
+];

@@ -1,0 +1,29 @@
+export default function Dashboard() {
+  return (
+    <ControlPanel
+      onStartTask={() => alert('Starting!')}
+      onSaveFile={() => alert('Saving!')}
+    />
+  );
+}
+
+function ControlPanel({ onStartTask, onSaveFile }) {
+  return (
+    <div>
+      <ActionButton onClick={onStartTask}>
+        Start Task
+      </ActionButton>
+      <ActionButton onClick={onSaveFile}>
+        Save File
+      </ActionButton>
+    </div>
+  );
+}
+
+function ActionButton({ onClick, children }) {
+  return (
+    <button onClick={onClick}>
+      {children}
+    </button>
+  );
+}

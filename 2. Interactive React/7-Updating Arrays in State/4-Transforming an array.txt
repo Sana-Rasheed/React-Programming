@@ -1,0 +1,47 @@
+import { useState } from "react";
+
+let initialWidgets = [
+  { id: 0, type: "circle", x: 50, y: 100 },
+  { id: 1, type: "square", x: 150, y: 100 },
+  { id: 2, type: "circle", x: 250, y: 100 },
+];
+
+export default function WidgetEditor() {
+  const [widgets, setWidgets] = useState(initialWidgets);
+
+  function handleMove() {
+    const updatedWidgets = widgets.map((widget) => {
+      if (widget.type === "square") {
+        // No change
+        return widget;
+      } else {
+        // Move circles 50px down
+        return {
+          ...widget,
+          y: widget.y + 50,
+        };
+      }
+    });
+    setWidgets(updatedWidgets);
+  }
+
+  return (
+    <>
+      <button onClick={handleMove}>Move circles down!</button>
+      {widgets.map((widget) => (
+        <div
+          key={widget.id}
+          style={{
+            background: "orange",
+            position: "absolute",
+            left: widget.x,
+            top: widget.y,
+            borderRadius: widget.type === "circle" ? "50%" : "",
+            width: 30,
+            height: 30,
+          }}
+        />
+      ))}
+    </>
+  );
+}

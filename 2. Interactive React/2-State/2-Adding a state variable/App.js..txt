@@ -1,0 +1,26 @@
+import { useState } from "react";
+import { bookList } from "./data.js";
+
+export default function Library() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  function handleNext() {
+    setCurrentIndex(currentIndex + 1);
+  }
+
+  let currentBook = bookList[currentIndex];
+  return (
+    <>
+      <button onClick={handleNext}>Next Book</button>
+      <h2>
+        <i>{currentBook.title} </i>
+        by {currentBook.author}
+      </h2>
+      <h3>
+        ({currentIndex + 1} of {bookList.length})
+      </h3>
+      <img src={currentBook.coverUrl} alt={currentBook.altText} />
+      <p>{currentBook.summary}</p>
+    </>
+  );
+}

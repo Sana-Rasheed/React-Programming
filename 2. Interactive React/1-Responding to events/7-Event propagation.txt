@@ -1,0 +1,14 @@
+export default function ControlPanel() {
+  return (
+    <div className="ControlPanel" onClick={() => {
+      alert('You clicked on the control panel!');
+    }}>
+      <button onClick={() => alert('Starting!')}>
+        Start Task
+      </button>
+      <button onClick={() => alert('Saving!')}>
+        Save File
+      </button>
+    </div>
+  );
+}

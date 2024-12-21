@@ -1,0 +1,13 @@
+function Book({ visitor }) {
+  return <h2>Book for visitor #{visitor}</h2>;
+}
+
+export default function Library() {
+  return (
+    <>
+      <Book visitor={1} />
+      <Book visitor={2} />
+      <Book visitor={3} />
+    </>
+  );
+}

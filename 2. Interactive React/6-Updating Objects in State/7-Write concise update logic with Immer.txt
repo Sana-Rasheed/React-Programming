@@ -1,0 +1,65 @@
+import { useImmer } from "use-immer";
+
+export default function ArtworkForm() {
+  const [artist, updateArtist] = useImmer({
+    name: "Eduardo Catalano",
+    creation: {
+      title: "Floralis Genérica",
+      location: "Buenos Aires",
+      imageUrl: "https://i.imgur.com/ZF6s192m.jpg",
+    },
+  });
+
+  function handleNameChange(e) {
+    updateArtist((draft) => {
+      draft.name = e.target.value;
+    });
+  }
+
+  function handleTitleChange(e) {
+    updateArtist((draft) => {
+      draft.creation.title = e.target.value;
+    });
+  }
+
+  function handleCityChange(e) {
+    updateArtist((draft) => {
+      draft.creation.location = e.target.value;
+    });
+  }
+
+  function handleImageChange(e) {
+    updateArtist((draft) => {
+      draft.creation.imageUrl = e.target.value;
+    });
+  }
+
+  return (
+    <>
+      <label>
+        Name:
+        <input value={artist.name} onChange={handleNameChange} />
+      </label>
+      <label>
+        Title:
+        <input value={artist.creation.title} onChange={handleTitleChange} />
+      </label>
+      <label>
+        City:
+        <input value={artist.creation.location} onChange={handleCityChange} />
+      </label>
+      <label>
+        Image:
+        <input value={artist.creation.imageUrl} onChange={handleImageChange} />
+      </label>
+      <p>
+        <i>{artist.creation.title}</i>
+        {" by "}
+        {artist.name}
+        <br />
+        (located in {artist.creation.location})
+      </p>
+      <img src={artist.creation.imageUrl} alt={artist.creation.title} />
+    </>
+  );
+}

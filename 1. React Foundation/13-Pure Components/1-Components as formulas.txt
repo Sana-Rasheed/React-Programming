@@ -1,0 +1,26 @@
+function Dish({ servings }) {
+  return (
+    <ul>
+      <li>Preheat oven to 350°F.</li>
+      <li>
+        Mix {servings} cups of flour with {0.5 * servings} cups of sugar.
+      </li>
+      <li>
+        Stir in {0.5 * servings} cups of butter and bake for {servings * 15}{" "}
+        minutes.
+      </li>
+    </ul>
+  );
+}
+
+export default function Main() {
+  return (
+    <div>
+      <h1>Delicious Cookie Recipe</h1>
+      <h2>For a small gathering</h2>
+      <Dish servings={2} />
+      <h2>For a large gathering</h2>
+      <Dish servings={4} />
+    </div>
+  );
+}

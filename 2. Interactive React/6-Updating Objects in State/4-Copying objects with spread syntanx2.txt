@@ -1,0 +1,50 @@
+import { useState } from "react";
+
+export default function ProfileForm() {
+  const [user, setUser] = useState({
+    firstName: "John",
+    lastName: "Doe",
+    email: "jdoe@example.com",
+  });
+
+  function handleFirstNameChange(e) {
+    setUser({
+      ...user,
+      firstName: e.target.value,
+    });
+  }
+
+  function handleLastNameChange(e) {
+    setUser({
+      ...user,
+      lastName: e.target.value,
+    });
+  }
+
+  function handleEmailChange(e) {
+    setUser({
+      ...user,
+      email: e.target.value,
+    });
+  }
+
+  return (
+    <>
+      <label>
+        First name:
+        <input value={user.firstName} onChange={handleFirstNameChange} />
+      </label>
+      <label>
+        Last name:
+        <input value={user.lastName} onChange={handleLastNameChange} />
+      </label>
+      <label>
+        Email:
+        <input value={user.email} onChange={handleEmailChange} />
+      </label>
+      <p>
+        {user.firstName} {user.lastName} ({user.email})
+      </p>
+    </>
+  );
+}

@@ -1,0 +1,30 @@
+import { useState } from "react";
+
+let nextId = 0;
+
+export default function BookList() {
+  const [title, setTitle] = useState("");
+  const [books, setBooks] = useState([]);
+
+  return (
+    <>
+      <h1>Favorite Books:</h1>
+      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      <button
+        onClick={() => {
+          books.push({
+            id: nextId++,
+            title: title,
+          });
+        }}
+      >
+        Add
+      </button>
+      <ul>
+        {books.map((book) => (
+          <li key={book.id}>{book.title}</li>
+        ))}
+      </ul>
+    </>
+  );
+}

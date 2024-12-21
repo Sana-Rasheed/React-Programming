@@ -1,0 +1,25 @@
+function ActionButton({ onClick, children }) {
+  return (
+    <button onClick={e => {
+      e.stopPropagation();
+      onClick();
+    }}>
+      {children}
+    </button>
+  );
+}
+
+export default function ControlPanel() {
+  return (
+    <div className="ControlPanel" onClick={() => {
+      alert('You clicked on the control panel!');
+    }}>
+      <ActionButton onClick={() => alert('Starting!')}>
+        Start Task
+      </ActionButton>
+      <ActionButton onClick={() => alert('Saving!')}>
+        Save File
+      </ActionButton>
+    </div>
+  );
+}

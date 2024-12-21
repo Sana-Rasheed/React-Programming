@@ -1,0 +1,84 @@
+import { useState } from "react";
+
+export default function ArtworkForm() {
+  const [artist, setArtist] = useState({
+    name: "Eduardo Catalano",
+    creation: {
+      title: "Floralis Genérica",
+      location: "Buenos Aires",
+      imageUrl: "https://i.imgur.com/ZF6s192m.jpg",
+    },
+  });
+
+  function handleNameChange(e) {
+    setArtist({
+      ...artist,
+      name: e.target.value,
+    });
+  }
+
+  function handleTitleChange(e) {
+    setArtist({
+      ...artist,
+      creation: {
+        ...artist.creation,
+        title: e.target.value,
+      },
+    });
+  }
+
+  function handleLocationChange(e) {
+    setArtist({
+      ...artist,
+      creation: {
+        ...artist.creation,
+        location: e.target.value,
+      },
+    });
+  }
+
+  function handleImageUrlChange(e) {
+    setArtist({
+      ...artist,
+      creation: {
+        ...artist.creation,
+        imageUrl: e.target.value,
+      },
+    });
+  }
+
+  return (
+    <>
+      <label>
+        Name:
+        <input value={artist.name} onChange={handleNameChange} />
+      </label>
+      <label>
+        Title:
+        <input value={artist.creation.title} onChange={handleTitleChange} />
+      </label>
+      <label>
+        Location:
+        <input
+          value={artist.creation.location}
+          onChange={handleLocationChange}
+        />
+      </label>
+      <label>
+        Image URL:
+        <input
+          value={artist.creation.imageUrl}
+          onChange={handleImageUrlChange}
+        />
+      </label>
+      <p>
+        <i>{artist.creation.title}</i>
+        {" by "}
+        {artist.name}
+        <br />
+        (located in {artist.creation.location})
+      </p>
+      <img src={artist.creation.imageUrl} alt={artist.creation.title} />
+    </>
+  );
+}

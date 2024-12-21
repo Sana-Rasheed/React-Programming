@@ -1,0 +1,11 @@
+function Book({ visitor }) {
+  return <h2>Book for visitor #{visitor}</h2>;
+}
+
+export default function BookCollection() {
+  let books = [];
+  for (let i = 1; i <= 12; i++) {
+    books.push(<Book key={i} visitor={i} />);
+  }
+  return books;
+}

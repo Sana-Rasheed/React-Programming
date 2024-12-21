@@ -1,0 +1,24 @@
+import * as React from "react";
+import motivations from "./motivations";
+import GreetingCard from "./GreetingCard";
+import Color from "./Color";
+
+export default function QuoteProvider({ children }) {
+  const [index, setIndex] = React.useState(0);
+  const motivation = motivations[index];
+  const next = () => setIndex((index + 1) % motivations.length);
+
+  return (
+    <>
+      <p>Your Motivational {motivation.type} is:</p>
+      {motivation.type === "quote" ? (
+        <GreetingCard text={motivation.value} />
+      ) : (
+        <Color value={motivation.value} />
+      )}
+
+      <button onClick={next}>Motivational Quote</button>
+      {children}
+    </>
+  );
+}

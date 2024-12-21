@@ -1,0 +1,21 @@
+const person = {
+  name: "Ada Lovelace",
+  theme: {
+    backgroundColor: "lightgreen",
+    color: "Black",
+  },
+};
+
+export default function ResearchAgenda() {
+  return (
+    <div style={person.theme}>
+      <h1>{person.name}'s Research Agenda</h1>
+      <img className="avatar" src="https://bit.ly/4fVohlX" alt="Ada Lovelace" />
+      <ul>
+        <li>Develop algorithms for the analytical engine</li>
+        <li>Study computing theory</li>
+        <li>Collaborate on mathematical research</li>
+      </ul>
+    </div>
+  );
+}

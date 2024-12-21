@@ -1,0 +1,19 @@
+export function Profile() {
+  return (
+    <img
+      src="https://bit.ly/3Xfea47"
+      alt="Marie Curie"
+    />
+  );
+}
+
+export default function Gallery() {
+  return (
+    <section>
+      <h1>Renowned Scientists</h1>
+      <Profile />
+      <Profile />
+      <Profile />
+    </section>
+  );
+}

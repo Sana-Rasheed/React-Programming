@@ -1,0 +1,33 @@
+import { useState } from 'react';
+
+export default function MessageForm() {
+  const [recipient, setRecipient] = useState('Charlie');
+  const [text, setText] = useState('Hi there!');
+
+  function handleSubmission(e) {
+    e.preventDefault();
+    setTimeout(() => {
+      alert(`You said "${text}" to ${recipient}`);
+    }, 5000);
+  }
+
+  return (
+    <form onSubmit={handleSubmission}>
+      <label>
+        To:{' '}
+        <select
+          value={recipient}
+          onChange={e => setRecipient(e.target.value)}>
+          <option value="Charlie">Charlie</option>
+          <option value="Dana">Dana</option>
+        </select>
+      </label>
+      <textarea
+        placeholder="Your message"
+        value={text}
+        onChange={e => setText(e.target.value)}
+      />
+      <button type="submit">Send</button>
+    </form>
+  );
+}

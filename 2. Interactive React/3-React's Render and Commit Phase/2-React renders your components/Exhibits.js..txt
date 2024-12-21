@@ -1,0 +1,19 @@
+export default function Exhibit() {
+  return (
+    <section>
+      <h1>Captivating Photographs</h1>
+      <Photo />
+      <Photo />
+      <Photo />
+    </section>
+  );
+}
+
+function Photo() {
+  return (
+    <img
+      src="https://i.imgur.com/2heNQDcm.jpg"
+      alt="A tall sculpture made of three elements stacked on each other reminding of a human figure."
+    />
+  );
+}

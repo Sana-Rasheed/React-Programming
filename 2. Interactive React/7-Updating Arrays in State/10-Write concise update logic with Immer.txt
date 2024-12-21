@@ -1,0 +1,59 @@
+import { useState } from 'react';
+import { useImmer } from 'use-immer';
+
+let nextId = 3;
+const initialBooks = [
+  { id: 0, title: 'The Great Gatsby', read: false },
+  { id: 1, title: 'Pride and Prejudice', read: false },
+  { id: 2, title: 'Moby Dick', read: true },
+];
+
+export default function ReadingList() {
+  const [myBooks, updateMyBooks] = useImmer(initialBooks);
+  const [yourBooks, updateYourBooks] = useImmer(initialBooks);
+
+  function handleToggleMyBooks(id, nextRead) {
+    updateMyBooks(draft => {
+      const book = draft.find(b => b.id === id);
+      book.read = nextRead;
+    });
+  }
+
+  function handleToggleYourBooks(bookId, nextRead) {
+    updateYourBooks(draft => {
+      const book = draft.find(b => b.id === bookId);
+      book.read = nextRead;
+    });
+  }
+
+  return (
+    <>
+      <h1>Reading Bucket List</h1>
+      <h2>My list of books to read:</h2>
+      <BookList books={myBooks} onToggle={handleToggleMyBooks} />
+      <h2>Your list of books to read:</h2>
+      <BookList books={yourBooks} onToggle={handleToggleYourBooks} />
+    </>
+  );
+}
+
+function BookList({ books, onToggle }) {
+  return (
+    <ul>
+      {books.map(book => (
+        <li key={book.id}>
+          <label>
+            <input
+              type="checkbox"
+              checked={book.read}
+              onChange={e => {
+                onToggle(book.id, e.target.checked);
+              }}
+            />
+            {book.title}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+}

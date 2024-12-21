@@ -1,0 +1,29 @@
+import { useState } from 'react';
+
+export default function FeedbackForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [feedback, setFeedback] = useState('Hello!');
+  
+  if (isSubmitted) {
+    return <h1>Your feedback has been submitted!</h1>
+  }
+
+  return (
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      setIsSubmitted(true);
+      submitFeedback(feedback);
+    }}>
+      <textarea
+        placeholder="Your feedback"
+        value={feedback}
+        onChange={e => setFeedback(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+function submitFeedback(feedback) {
+  // ...
+}

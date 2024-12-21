@@ -1,0 +1,6 @@
+export default function ResearchProjects() {
+  const name = 'Ada Lovelace';
+  return (
+    <h1>{name}'s Research Projects</h1>
+  );
+}

@@ -1,0 +1,17 @@
+import { useState } from 'react';
+
+export default function GoalTracker() {
+  const [goals, setGoals] = useState(0);
+
+  return (
+    <>
+      <h1>{goals}</h1>
+      <button onClick={() => {
+        setGoals(goals + 5);
+        setTimeout(() => {
+          alert(goals);
+        }, 3000);
+      }}>+5</button>
+    </>
+  );
+}

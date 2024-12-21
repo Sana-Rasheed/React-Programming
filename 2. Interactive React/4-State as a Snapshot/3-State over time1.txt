@@ -1,0 +1,15 @@
+import { useState } from 'react';
+
+export default function PointTracker() {
+  const [points, setPoints] = useState(0);
+
+  return (
+    <>
+      <h1>{points}</h1>
+      <button onClick={() => {
+        setPoints(points + 5);
+        alert(points);
+      }}>+5</button>
+    </>
+  );
+}

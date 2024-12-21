@@ -1,0 +1,45 @@
+import { useState } from 'react';
+
+let nextId = 3;
+const initialBooks = [
+  { id: 0, title: 'To Kill a Mockingbird' },
+  { id: 1, title: '1984' },
+  { id: 2, title: 'Pride and Prejudice' },
+];
+
+export default function BookList() {
+  const [title, setTitle] = useState('');
+  const [books, setBooks] = useState(initialBooks);
+
+  function handleInsert() {
+    const insertAt = 1; // Could be any index
+    const nextBooks = [
+      // Items before the insertion point:
+      ...books.slice(0, insertAt),
+      // New item:
+      { id: nextId++, title: title },
+      // Items after the insertion point:
+      ...books.slice(insertAt)
+    ];
+    setBooks(nextBooks);
+    setTitle('');
+  }
+
+  return (
+    <>
+      <h1>Favorite Books:</h1>
+      <input
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+      />
+      <button onClick={handleInsert}>
+        Insert
+      </button>
+      <ul>
+        {books.map(book => (
+          <li key={book.id}>{book.title}</li>
+        ))}
+      </ul>
+    </>
+  );
+}

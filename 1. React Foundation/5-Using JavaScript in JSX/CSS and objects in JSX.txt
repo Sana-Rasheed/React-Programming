@@ -1,0 +1,14 @@
+export default function ResearchTasks() {
+  return (
+    <ul
+      style={{
+        backgroundColor: "lightgreen",
+        color: "Black",
+      }}
+    >
+      <li>Develop analytical engine algorithms</li>
+      <li>Study mathematical principles of computing</li>
+      <li>Collaborate on scientific publications</li>
+    </ul>
+  );
+}

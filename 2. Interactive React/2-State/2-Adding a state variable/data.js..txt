@@ -1,0 +1,86 @@
+export const bookList = [
+  {
+    title: "Pericles and Aspasia",
+    author: "Yvonne Korshak",
+    summary:
+      "The novel unfolds against the background of the arts and history of the Golden Age, seen through the eyes of two individuals who lent their particular brilliance to make it 'golden'",
+    coverUrl: "https://shorturl.at/FugZR",
+    altText: "A Story of Ancient Greece",
+  },
+  {
+    title: "A Story of Yesterday",
+    author: "Sergio Cobo",
+    summary:
+      "Under a sky of different colors germinates a magical story of survival, where the result of each choice, enclosed in this particular tale, will snatch the whereabouts of each story forever.",
+    coverUrl: "https://shorturl.at/d5Ch9",
+    altText:
+      "A Story of Yesterday is a concise and straight punch to the jaw of life.",
+  },
+  {
+    title: "The Perks of Being a Wallflower",
+    author: "Stephen Chbosky",
+    summary:
+      "This haunting novel about the dilemma of passivity vs. passion marks the stunning debut of a provocative new voice in contemporary fiction",
+    coverUrl: "https://shorturl.at/gSgSc",
+    altText: "standing on the fringes of life.",
+  },
+  {
+    title: "One Hundred Years of Solitude",
+    author: "Gabriel García Márquez",
+    summary:
+      "The brilliant, bestselling, landmark novel that tells the story of the Buendia family, and chronicles the irreconcilable conflict between the desire for solitude and the need for love—in rich, imaginative prose that has come to define an entire genre known as 'magical realism'.",
+    coverUrl: "https://shorturl.at/pcTVo",
+    altText: "Magical realism",
+  },
+  {
+    title: "Tender Is the Night",
+    author: "F. Scott Fitzgerald",
+    summary:
+      "Tender Is the Night is the tragic romance of the young actress Rosemary Hoyt and the stylish American couple Dick and Nicole Diver.",
+    coverUrl: "https://shorturl.at/dOBFq",
+    altText:
+      "Tender Is the Night is lyrical, expansive, and hauntingly evocative.",
+  },
+  {
+    title: "A Wrinkle in Time",
+    author: "Madeleine L'Engle",
+    summary:
+      "Winner of the 1963 Newbery Medal, A Wrinkle in Time is the first book in Madeleine L'Engle's classic Time Quintet.",
+    coverUrl: "https://shorturl.at/WfIoF",
+    altText: "It was a dark and stormy night.",
+  },
+  {
+    title: "The Elephant Tree",
+    author: "R.D. Ronald",
+    summary:
+      "This is a chilling tale spanning a few months in the lives of Scott and Angela, where realizations about the present combine with shocking revelations from the past leading to an apocalyptic climax where they no longer know whom they can trust.",
+    coverUrl: "https://shorturl.at/OUxYh",
+    altText:
+      "The Elephant Tree is a story of a man trying to escape from his own tedious life.",
+  },
+  {
+    title: "One Flew Over the Cuckoo’s Nest",
+    author: "Ken Kesey",
+    summary:
+      "Ken Kesey's extraordinary first novel is an exuberant, ribald and devastatingly honest portrayal of the boundaries between sanity and madness.",
+    coverUrl: "https://shorturl.at/mxQCF",
+    altText:
+      "it is a manifesto about the rights of man to have an individuality",
+  },
+  {
+    title: "The Sound and the Fury",
+    author: "William Faulkner",
+    summary:
+      "This book is Faulkner’s masterpiece and one of the greatest novels of the twentieth century.",
+    coverUrl: "https://shorturl.at/cjWh8",
+    altText: "The Sound and the Fury",
+  },
+  {
+    title: "American Psycho",
+    author: "Bret Easton Ellis",
+    summary:
+      "American Psycho is a bleak, bitter, black comedy about a world we all recognize but do not wish to confront.",
+    coverUrl: "https://shorturl.at/lBFP3",
+    altText: "American Psycho",
+  },
+];

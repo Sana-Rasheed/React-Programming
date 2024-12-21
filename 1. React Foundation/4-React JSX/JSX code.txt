@@ -1,0 +1,17 @@
+export default function ShoppingList() {
+  return (
+    <>
+      <h1>Albert Einstein's Shopping List</h1>
+      <img
+        src="https://bit.ly/4fOoMhx"
+        alt="Albert Einstein"
+        className="photo"
+      />
+      <ul>
+        <li>Buy chalk for equations</li>
+        <li>Get a new notebook</li>
+        <li>Purchase a pocket watch</li>
+      </ul>
+    </>
+  );
+}

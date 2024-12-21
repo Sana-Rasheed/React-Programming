@@ -1,0 +1,35 @@
+import { useState } from 'react';
+
+let initialScores = [
+  0, 0, 0
+];
+
+export default function Scoreboard() {
+  const [scores, setScores] = useState(initialScores);
+
+  function handleScoreIncrement(index) {
+    const updatedScores = scores.map((score, i) => {
+      if (i === index) {
+        // Increment the clicked score
+        return score + 1;
+      } else {
+        // The rest haven't changed
+        return score;
+      }
+    });
+    setScores(updatedScores);
+  }
+
+  return (
+    <ul>
+      {scores.map((score, i) => (
+        <li key={i}>
+          {score}
+          <button onClick={() => {
+            handleScoreIncrement(i);
+          }}>+1</button>
+        </li>
+      ))}
+    </ul>
+  );
+}

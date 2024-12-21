@@ -1,0 +1,13 @@
+import { getProductImageUrl } from "./utils.js";
+
+export default function ProductImage({ item, size }) {
+  return (
+    <img
+      className="avatar"
+      src={getProductImageUrl(item)}
+      alt={item.name}
+      width={size}
+      height={size}
+    />
+  );
+}

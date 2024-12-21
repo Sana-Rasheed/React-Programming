@@ -1,0 +1,10 @@
+import Library from './Library.js';
+
+export default function Page() {
+  return (
+    <div className="Page">
+      <Library />
+      <Library />
+    </div>
+  );
+}

@@ -1,0 +1,30 @@
+import { useState } from 'react';
+
+const initialList = [
+  { id: 0, title: 'The Great Gatsby' },
+  { id: 1, title: 'Moby Dick' },
+  { id: 2, title: 'War and Peace' },
+];
+
+export default function BookList() {
+  const [list, setList] = useState(initialList);
+
+  function handleReverse() {
+    const reversedList = [...list];
+    reversedList.reverse();
+    setList(reversedList);
+  }
+
+  return (
+    <>
+      <button onClick={handleReverse}>
+        Reverse
+      </button>
+      <ul>
+        {list.map(book => (
+          <li key={book.id}>{book.title}</li>
+        ))}
+      </ul>
+    </>
+  );
+}

@@ -1,0 +1,14 @@
+import GreetingCard from "./GreetingCard";
+import QuoteProvider from "./QuoteProvider";
+import Copyright from "./Copyright";
+
+export default function Main() {
+  return (
+    <>
+      <GreetingCard heading text="Welcome to My App" />
+      <QuoteProvider>
+        <Copyright year={2024} />
+      </QuoteProvider>
+    </>
+  );
+}

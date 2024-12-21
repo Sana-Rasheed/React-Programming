@@ -1,0 +1,17 @@
+let visitor = 0;
+
+function Book() {
+  // Bad: changing a preexisting variable!
+  visitor = visitor + 1;
+  return <h2>Book for visitor #{visitor}</h2>;
+}
+
+export default function Library() {
+  return (
+    <>
+      <Book />
+      <Book />
+      <Book />
+    </>
+  );
+}

@@ -1,0 +1,33 @@
+function Task({ title, isCompleted }) {
+  let taskContent = title;
+  if (isCompleted) {
+    taskContent = title + " ✅";
+  }
+  return (
+    <li className="task">
+      {taskContent}
+    </li>
+  );
+}
+
+export default function ToDoList() {
+  return (
+    <section>
+      <h1>John's To-Do List</h1>
+      <ul>
+        <Task 
+          isCompleted={true} 
+          title="Buy groceries" 
+        />
+        <Task 
+          isCompleted={true} 
+          title="Finish the report" 
+        />
+        <Task 
+          isCompleted={false} 
+          title="Call Mom" 
+        />
+      </ul>
+    </section>
+  );
+}

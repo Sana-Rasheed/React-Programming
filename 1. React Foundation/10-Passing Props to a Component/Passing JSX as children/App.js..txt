@@ -1,0 +1,19 @@
+import ProductImage from "./ProductImage";
+
+function Container({ children }) {
+  return <div className="card">{children}</div>;
+}
+
+export default function ProductCard() {
+  return (
+    <Container>
+      <ProductImage
+        size={200}
+        item={{
+          name: "Aklilu Lemma",
+          imageId: "OKS67lh",
+        }}
+      />
+    </Container>
+  );
+}

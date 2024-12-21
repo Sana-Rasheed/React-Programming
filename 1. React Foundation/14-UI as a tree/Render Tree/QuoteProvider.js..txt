@@ -1,0 +1,18 @@
+import * as React from "react";
+import messages from "./messages";
+import GreetingCard from "./GreetingCard";
+
+export default function QuoteProvider({ children }) {
+  const [index, setIndex] = React.useState(0);
+  const message = messages[index];
+  const next = () => setIndex((index + 1) % messages.length);
+
+  return (
+    <>
+      <p>Your motivational message is:</p>
+      <GreetingCard text={message} />
+      <button onClick={next}>Motivational Quote</button>
+      {children}
+    </>
+  );
+}

@@ -1,0 +1,19 @@
+function Profile() {
+  return (
+    <img
+      src="https://bit.ly/4fOoMhx"
+      alt="Albert Einstein"
+    />
+  );
+}
+
+export default function Gallery() {
+  return (
+    <section>
+      <h1>Amazing Scientists</h1>
+      <Profile />
+      <Profile />
+      <Profile />
+    </section>
+  );
+}

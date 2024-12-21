@@ -1,0 +1,20 @@
+function ActionButton({ onPress, children }) {
+  return (
+    <button onClick={onPress}>
+      {children}
+    </button>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <div>
+      <ActionButton onPress={() => alert('Starting!')}>
+        Start Task
+      </ActionButton>
+      <ActionButton onPress={() => alert('Saving!')}>
+        Save File
+      </ActionButton>
+    </div>
+  );
+}

@@ -1,0 +1,20 @@
+const people = [
+  'Jane Austen: novelist',
+  'Albert Einstein: physicist',
+  'Marie Curie: chemist',
+  'William Shakespeare: playwright',
+  'Isaac Newton: mathematician'
+];
+
+export default function List() {
+  const listItems = people.map(individual =>
+    <li>{individual}</li>
+  );
+  return <ul>{listItems}</ul>;
+}
+
+
+
+
+
+

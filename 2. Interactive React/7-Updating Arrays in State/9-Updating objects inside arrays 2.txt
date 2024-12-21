@@ -1,0 +1,75 @@
+import { useState } from 'react';
+
+let nextId = 3;
+const initialBooks = [
+  { id: 0, title: 'The Great Gatsby', read: false },
+  { id: 1, title: 'Pride and Prejudice', read: false },
+  { id: 2, title: 'Moby Dick', read: true },
+];
+
+export default function ReadingList() {
+  const [myBooks, setMyBooks] = useState(initialBooks);
+  const [yourBooks, setYourBooks] = useState(initialBooks);
+
+  function handleToggleMyBooks(bookId, nextRead) {
+    setMyBooks(myBooks.map(book => {
+      if (book.id === bookId) {
+        // Create a *new* object with changes
+        return { ...book, read: nextRead };
+      } else {
+        // No changes
+        return book;
+      }
+    }));
+  }
+
+  function handleToggleYourBooks(bookId, nextRead) {
+    setYourBooks(yourBooks.map(book => {
+      if (book.id === bookId) {
+        // Create a *new* object with changes
+        return { ...book, read: nextRead };
+      } else {
+        // No changes
+        return book;
+      }
+    }));
+  }
+
+  return (
+    <>
+      <h1>Reading Bucket List</h1>
+      <h2>My list of books to read:</h2>
+      <BookList
+        books={myBooks}
+        onToggle={handleToggleMyBooks} />
+      <h2>Your list of books to read:</h2>
+      <BookList
+        books={yourBooks}
+        onToggle={handleToggleYourBooks} />
+    </>
+  );
+}
+
+function BookList({ books, onToggle }) {
+  return (
+    <ul>
+      {books.map(book => (
+        <li key={book.id}>
+          <label>
+            <input
+              type="checkbox"
+              checked={book.read}
+              onChange={e => {
+                onToggle(
+                  book.id,
+                  e.target.checked
+                );
+              }}
+            />
+            {book.title}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+}

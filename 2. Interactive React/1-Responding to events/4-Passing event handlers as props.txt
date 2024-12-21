@@ -1,0 +1,36 @@
+function ActionButton({ onAction, children }) {
+  return (
+    <button onClick={onAction}>
+      {children}
+    </button>
+  );
+}
+
+function StartButton({ taskName }) {
+  function handleStartClick() {
+    alert(`Starting ${taskName}!`);
+  }
+
+  return (
+    <ActionButton onAction={handleStartClick}>
+      Start "{taskName}"
+    </ActionButton>
+  );
+}
+
+function SaveButton() {
+  return (
+    <ActionButton onAction={() => alert('Saving!')}>
+      Save Document
+    </ActionButton>
+  );
+}
+
+export default function ControlPanel() {
+  return (
+    <div>
+      <StartButton taskName="Project Alpha" />
+      <SaveButton />
+    </div>
+  );
+}

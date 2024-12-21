@@ -1,0 +1,20 @@
+function NotifyButton({ notice, children }) {
+  return (
+    <button onClick={() => alert(notice)}>
+      {children}
+    </button>
+  );
+}
+
+export default function ControlPanel() {
+  return (
+    <div>
+      <NotifyButton notice="Starting!">
+        Start Engine
+      </NotifyButton>
+      <NotifyButton notice="Saving!">
+        Save Document
+      </NotifyButton>
+    </div>
+  );
+}

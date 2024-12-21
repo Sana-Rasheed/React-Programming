@@ -1,0 +1,7 @@
+export default [
+  "The only limit to our realization of tomorrow is our doubts of today.",
+  "In the middle of every difficulty lies opportunity.",
+  "The future belongs to those who believe in the beauty of their dreams.",
+  "Everything you've ever wanted is sitting on the other side of fear.",
+  "Don't worry about failure; you only have to be right once.",
+];
