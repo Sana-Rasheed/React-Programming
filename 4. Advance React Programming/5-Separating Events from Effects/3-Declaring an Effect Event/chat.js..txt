@@ -1,0 +1,26 @@
+export function createConnection(serverUrl, topicId) {
+  // A real implementation would actually connect to the server
+  let sessionStartedCallback;
+  let timeout;
+  return {
+    start() {
+      timeout = setTimeout(() => {
+        if (sessionStartedCallback) {
+          sessionStartedCallback();
+        }
+      }, 100);
+    },
+    on(event, callback) {
+      if (sessionStartedCallback) {
+        throw Error("Cannot add the handler twice.");
+      }
+      if (event !== "started") {
+        throw Error('Only "started" event is supported.');
+      }
+      sessionStartedCallback = callback;
+    },
+    end() {
+      clearTimeout(timeout);
+    },
+  };
+}

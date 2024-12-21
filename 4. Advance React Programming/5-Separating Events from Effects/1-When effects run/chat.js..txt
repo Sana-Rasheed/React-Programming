@@ -1,0 +1,23 @@
+export function postComment(comment) {
+  console.log("🟢 You posted: " + comment);
+}
+
+export function createConnection(serverUrl, topicId) {
+  // A real implementation would actually connect to the server
+  return {
+    start() {
+      console.log(
+        '✅ Starting session for "' +
+          topicId +
+          '" topic at ' +
+          serverUrl +
+          "..."
+      );
+    },
+    end() {
+      console.log(
+        '❌ Ended session for "' + topicId + '" topic at ' + serverUrl
+      );
+    },
+  };
+}

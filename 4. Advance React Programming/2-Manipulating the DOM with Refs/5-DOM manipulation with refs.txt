@@ -1,0 +1,26 @@
+import { useState, useRef } from "react";
+
+export default function MessageToggler() {
+  const [isVisible, setIsVisible] = useState(true);
+  const messageRef = useRef(null);
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setIsVisible(!isVisible);
+        }}
+      >
+        Toggle Message with setState
+      </button>
+      <button
+        onClick={() => {
+          messageRef.current.remove();
+        }}
+      >
+        Remove Message from the DOM
+      </button>
+      {isVisible && <p ref={messageRef}>Greetings from React!</p>}
+    </div>
+  );
+}

@@ -1,0 +1,20 @@
+import { useEffect } from "react";
+import { experimental_useEffectEvent as useEffectEvent } from "react";
+import { createConnection } from "./discussion.js";
+
+export function useDiscussionBoard({ serverUrl, boardId, onReceivePost }) {
+  const onPost = useEffectEvent(onReceivePost);
+
+  useEffect(() => {
+    const settings = {
+      serverUrl: serverUrl,
+      boardId: boardId,
+    };
+    const session = createConnection(settings);
+    session.connect();
+    session.on("post", (post) => {
+      onPost(post);
+    });
+    return () => session.disconnect();
+  }, [boardId, serverUrl]);
+}

@@ -1,0 +1,62 @@
+import { useRef } from "react";
+
+export default function ParrotFriends() {
+  const firstParrotRef = useRef(null);
+  const secondParrotRef = useRef(null);
+  const thirdParrotRef = useRef(null);
+
+  function handleScrollToFirstParrot() {
+    firstParrotRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+
+  function handleScrollToSecondParrot() {
+    secondParrotRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+
+  function handleScrollToThirdParrot() {
+    thirdParrotRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
+
+  return (
+    <>
+      <nav>
+        <button onClick={handleScrollToFirstParrot}>Mr.Chester</button>
+        <button onClick={handleScrollToSecondParrot}>Polly</button>
+        <button onClick={handleScrollToThirdParrot}>Cyan</button>
+      </nav>
+      <div>
+        <ul>
+          <li>
+            <img
+              src="http://bit.ly/3YH6wAk"
+              alt="Mr.Chester"
+              ref={firstParrotRef}
+            />
+          </li>
+          <li>
+            <img
+              src="https://bit.ly/3UrZqwV"
+              alt="Polly"
+              ref={secondParrotRef}
+            />
+          </li>
+          <li>
+            <img src="https://bit.ly/4e6VsRF" alt="Cyan" ref={thirdParrotRef} />
+          </li>
+        </ul>
+      </div>
+    </>
+  );
+}

@@ -1,0 +1,29 @@
+import { useState } from "react";
+
+export default function Stopwatch() {
+  const [initialTime, setInitialTime] = useState(null);
+  const [currentTime, setCurrentTime] = useState(null);
+
+  function handleStartTimer() {
+    // Start counting.
+    setInitialTime(Date.now());
+    setCurrentTime(Date.now());
+
+    setInterval(() => {
+      // Update the current time every 10ms.
+      setCurrentTime(Date.now());
+    }, 10);
+  }
+
+  let elapsedSeconds = 0;
+  if (initialTime != null && currentTime != null) {
+    elapsedSeconds = (currentTime - initialTime) / 1000;
+  }
+
+  return (
+    <>
+      <h1>Elapsed time: {elapsedSeconds.toFixed(3)} seconds</h1>
+      <button onClick={handleStartTimer}>Start</button>
+    </>
+  );
+}

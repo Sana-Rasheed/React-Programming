@@ -1,0 +1,18 @@
+import { useEffect } from "react";
+import { createConnection } from "./discussion.js";
+import { displayNotification } from "./notifications.js";
+
+export function useDiscussionBoard({ serverUrl, boardId }) {
+  useEffect(() => {
+    const settings = {
+      serverUrl: serverUrl,
+      boardId: boardId,
+    };
+    const session = createConnection(settings);
+    session.connect();
+    session.on("post", (post) => {
+      displayNotification("New post: " + post);
+    });
+    return () => session.disconnect();
+  }, [boardId, serverUrl]);
+}

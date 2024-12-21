@@ -1,0 +1,24 @@
+import { useTextInput } from "./useTextInput.js";
+
+export default function RegistrationForm() {
+  const firstNameProps = useTextInput("Alex");
+  const lastNameProps = useTextInput("Johnson");
+
+  return (
+    <>
+      <label>
+        First name:
+        <input {...firstNameProps} />
+      </label>
+      <label>
+        Last name:
+        <input {...lastNameProps} />
+      </label>
+      <p>
+        <b>
+          Welcome, {firstNameProps.value} {lastNameProps.value}.
+        </b>
+      </p>
+    </>
+  );
+}

@@ -1,0 +1,48 @@
+import { useState, useEffect } from "react";
+import { createConnection, postComment } from "./chat.js";
+
+const serverUrl = "https://localhost:1234";
+
+function ChatForum({ topicId }) {
+  const [comment, setComment] = useState("");
+
+  useEffect(() => {
+    const connection = createConnection(serverUrl, topicId);
+    connection.start();
+    return () => connection.end();
+  }, [topicId]);
+
+  function handlePostClick() {
+    postComment(comment);
+  }
+
+  return (
+    <>
+      <h1>Welcome to the {topicId} discussion!</h1>
+      <input value={comment} onChange={(e) => setComment(e.target.value)} />
+      <button onClick={handlePostClick}>Post</button>
+    </>
+  );
+}
+
+export default function ForumApp() {
+  const [topicId, setTopicId] = useState("technology");
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <label>
+        Select a topic:{" "}
+        <select value={topicId} onChange={(e) => setTopicId(e.target.value)}>
+          <option value="technology">technology</option>
+          <option value="science">science</option>
+          <option value="art">art</option>
+        </select>
+      </label>
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? "Close discussion" : "Open discussion"}
+      </button>
+      {isOpen && <hr />}
+      {isOpen && <ChatForum topicId={topicId} />}
+    </>
+  );
+}

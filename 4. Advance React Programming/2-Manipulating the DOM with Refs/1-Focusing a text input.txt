@@ -1,0 +1,16 @@
+import { useRef } from "react";
+
+export default function SearchForm() {
+  const searchRef = useRef(null);
+
+  function handleFocus() {
+    searchRef.current.focus();
+  }
+
+  return (
+    <>
+      <input ref={searchRef} />
+      <button onClick={handleFocus}>Focus the search field</button>
+    </>
+  );
+}

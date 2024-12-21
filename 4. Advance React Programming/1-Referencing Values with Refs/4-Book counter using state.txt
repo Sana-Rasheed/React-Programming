@@ -1,0 +1,13 @@
+import { useState } from "react";
+
+export default function BookCounter() {
+  const [booksCount, setBooksCount] = useState(0);
+
+  function handleBookClick() {
+    setBooksCount(booksCount + 1);
+  }
+
+  return (
+    <button onClick={handleBookClick}>You have read {booksCount} books</button>
+  );
+}

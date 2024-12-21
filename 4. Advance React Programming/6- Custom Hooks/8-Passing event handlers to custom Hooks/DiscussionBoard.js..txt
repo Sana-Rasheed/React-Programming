@@ -1,0 +1,28 @@
+import { useState } from "react";
+import { useDiscussionBoard } from "./useDiscussionBoard.js";
+import { displayNotification } from "./notifications.js";
+
+export default function DiscussionBoard({ boardId }) {
+  const [serverUrl, setServerUrl] = useState("https://localhost:1234");
+
+  useDiscussionBoard({
+    boardId: boardId,
+    serverUrl: serverUrl,
+    onReceivePost(post) {
+      displayNotification("New post: " + post);
+    },
+  });
+
+  return (
+    <>
+      <label>
+        Server URL:
+        <input
+          value={serverUrl}
+          onChange={(e) => setServerUrl(e.target.value)}
+        />
+      </label>
+      <h1>Welcome to the {boardId} board!</h1>
+    </>
+  );
+}

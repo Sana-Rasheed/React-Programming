@@ -1,0 +1,44 @@
+export function createConnection({ serverUrl, boardId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== "string") {
+    throw Error("Expected serverUrl to be a string. Received: " + serverUrl);
+  }
+  if (typeof boardId !== "string") {
+    throw Error("Expected boardId to be a string. Received: " + boardId);
+  }
+  let intervalId;
+  let postCallback;
+  return {
+    connect() {
+      console.log(
+        '✅ Connecting to "' + boardId + '" board at ' + serverUrl + "..."
+      );
+      clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        if (postCallback) {
+          if (Math.random() > 0.5) {
+            postCallback("hello");
+          } else {
+            postCallback("hi");
+          }
+        }
+      }, 3000);
+    },
+    disconnect() {
+      clearInterval(intervalId);
+      postCallback = null;
+      console.log(
+        '❌ Disconnected from "' + boardId + '" board at ' + serverUrl + ""
+      );
+    },
+    on(event, callback) {
+      if (postCallback) {
+        throw Error("Cannot add the handler twice.");
+      }
+      if (event !== "post") {
+        throw Error('Only "post" event is supported.');
+      }
+      postCallback = callback;
+    },
+  };
+}

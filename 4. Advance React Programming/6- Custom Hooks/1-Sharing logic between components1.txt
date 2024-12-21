@@ -1,0 +1,23 @@
+import { useState, useEffect } from "react";
+
+export default function ConnectionStatus() {
+  const [connected, setConnected] = useState(true);
+
+  useEffect(() => {
+    function handleOnline() {
+      setConnected(true);
+    }
+    function handleOffline() {
+      setConnected(false);
+    }
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
+
+  return <h1>{connected ? "✅ Connected" : "❌ Offline"}</h1>;
+}

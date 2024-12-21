@@ -1,0 +1,29 @@
+import { useNetworkStatus } from "./useNetworkStatus.js";
+
+function ConnectionStatus() {
+  const isConnected = useNetworkStatus();
+  return <h1>{isConnected ? "✅ Connected" : "❌ Offline"}</h1>;
+}
+
+function ProgressSaveButton() {
+  const isConnected = useNetworkStatus();
+
+  function handleSubmitClick() {
+    console.log("✅ Progress saved");
+  }
+
+  return (
+    <button disabled={!isConnected} onClick={handleSubmitClick}>
+      {isConnected ? "Save progress" : "Reconnecting..."}
+    </button>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <>
+      <ProgressSaveButton />
+      <ConnectionStatus />
+    </>
+  );
+}

@@ -1,0 +1,30 @@
+import { useState, useEffect } from "react";
+
+export default function ProgressSaveButton() {
+  const [isConnected, setIsConnected] = useState(true);
+
+  useEffect(() => {
+    function handleConnect() {
+      setIsConnected(true);
+    }
+    function handleDisconnect() {
+      setIsConnected(false);
+    }
+    window.addEventListener("online", handleConnect);
+    window.addEventListener("offline", handleDisconnect);
+    return () => {
+      window.removeEventListener("online", handleConnect);
+      window.removeEventListener("offline", handleDisconnect);
+    };
+  }, []);
+
+  function handleSubmitClick() {
+    console.log("✅ Progress saved");
+  }
+
+  return (
+    <button disabled={!isConnected} onClick={handleSubmitClick}>
+      {isConnected ? "Save progress" : "Reconnecting..."}
+    </button>
+  );
+}

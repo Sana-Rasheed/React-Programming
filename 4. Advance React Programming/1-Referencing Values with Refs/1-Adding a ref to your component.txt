@@ -1,0 +1,12 @@
+import { useRef } from "react";
+
+export default function ClickCounter() {
+  let countRef = useRef(0);
+
+  function handleTap() {
+    countRef.current = countRef.current + 1;
+    alert("You clicked the button " + countRef.current + " times!");
+  }
+
+  return <button onClick={handleTap}>Tap me!</button>;
+}

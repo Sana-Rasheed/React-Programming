@@ -1,0 +1,21 @@
+import { useState } from "react";
+import DiscussionBoard from "./DiscussionBoard.js";
+
+export default function MainApp() {
+  const [boardId, setBoardId] = useState("main");
+
+  return (
+    <>
+      <label>
+        Select a discussion board:{" "}
+        <select value={boardId} onChange={(e) => setBoardId(e.target.value)}>
+          <option value="main">main</option>
+          <option value="sports">sports</option>
+          <option value="movies">movies</option>
+        </select>
+      </label>
+      <hr />
+      <DiscussionBoard boardId={boardId} />
+    </>
+  );
+}

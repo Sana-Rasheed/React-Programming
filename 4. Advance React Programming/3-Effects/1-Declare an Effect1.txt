@@ -1,0 +1,29 @@
+import { useState, useRef, useEffect } from "react";
+
+function VideoPlayer({ videoSource, isStreaming }) {
+  const videoRef = useRef(null);
+
+  if (isStreaming) {
+    videoRef.current.play(); // Calling these while rendering isn't allowed.
+  } else {
+    videoRef.current.pause();
+  }
+
+  return <video ref={videoRef} src={videoSource} loop playsInline />;
+}
+
+export default function VideoApp() {
+  const [isStreaming, setIsStreaming] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setIsStreaming(!isStreaming)}>
+        {isStreaming ? "Pause Video" : "Play Video"}
+      </button>
+      <VideoPlayer
+        isStreaming={isStreaming}
+        videoSource="https://shorturl.at/ZB0ZF"
+      />
+    </>
+  );
+}
